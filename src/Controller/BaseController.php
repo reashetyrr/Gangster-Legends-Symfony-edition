@@ -12,6 +12,10 @@ class BaseController extends AbstractController
      */
     public function index()
     {
+        if (!$this->getUser()) {
+            return $this->redirectToRoute('login');
+        }
+
         return $this->render('base/index.html.twig', [
             'controller_name' => 'BaseController',
         ]);
