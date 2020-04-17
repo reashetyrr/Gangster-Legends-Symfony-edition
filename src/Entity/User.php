@@ -5,11 +5,13 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
  * @ORM\Table(name="users")
+ * @UniqueEntity(fields={"username"}, message="There is already an account with this username")
  */
 class User implements UserInterface
 {
@@ -50,6 +52,11 @@ class User implements UserInterface
      * @ORM\OneToOne(targetEntity="App\Entity\Gang", mappedBy="boss", cascade={"persist", "remove"})
      */
     private $gang;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $online_status=false;
 
     public function __construct()
     {
@@ -187,6 +194,18 @@ class User implements UserInterface
         if ($gang->getBoss() !== $newBoss) {
             $gang->setBoss($newBoss);
         }
+
+        return $this;
+    }
+
+    public function getOnlineStatus(): ?bool
+    {
+        return $this->online_status;
+    }
+
+    public function setOnlineStatus(bool $online_status): self
+    {
+        $this->online_status = $online_status;
 
         return $this;
     }
