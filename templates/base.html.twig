@@ -1,12 +1,30 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
-    </body>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>{{ game_name }} - {{ page }}</title>
+    {% if _theme.stylesheets %}
+        {% for stylesheet_url in _theme.stylesheets %}
+            <link rel="stylesheet" href="{{ asset('themes/' ~ _theme.name ~ stylesheet_url) }}">
+        {% endfor %}
+    {% endif %}
+{#    <link rel="stylesheet" href="{{ asset('themes/' ~ _theme ~ '/css/bootstrap.min.css') }}">#}
+{#    <link rel="stylesheet" href="{{ asset('themes/' ~ _theme ~ '/css/style.css') }}">#}
+    {% if _theme.images and _theme.images.icon %}
+        <link rel="shortcut icon" href="{{ asset('themes/' ~ _theme.name ~ _theme.images.icon) }}" />
+    {% endif %}
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% block stylesheets %}{% endblock %}
+</head>
+
+<body>
+{% block body %}{% endblock %}
+{% block javascripts %}{% endblock %}
+
+{% if _theme.javascripts %}
+    {% for javascript_url in _theme.javascripts %}
+        <script src="{{ asset('/themes/' ~ _theme.name ~ javascript_url) }}"></script>
+    {% endfor %}
+{% endif %}
+</body>
 </html>

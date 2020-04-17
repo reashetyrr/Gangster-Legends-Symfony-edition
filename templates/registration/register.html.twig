@@ -1,8 +1,10 @@
 {% extends 'base.html.twig' %}
 
+{% block title %}Log in!{% endblock %}
+
 {% block body %}
     <div class="login-logo">
-        <img src="themes/{{ _theme }}/images/logo.png" alt="Ganger Legends" />
+        <img src="{{ (app.request.getSchemeAndHttpHost() ~ asset('themes/' ~ _theme.name ~ _theme.images.logo))|base64 }}" alt="{{ game_name }}" />
     </div>
 
     {% if loginSuffix %}
@@ -20,17 +22,31 @@
         <div class="panel-body">
             <ul class="nav nav-pills nav-justified">
                 <li>
-                    <a href="?page=login">Login</a>
+                    <a href="{{ path('login') }}">Login</a>
                 </li>
                 <li>
-                    <a href="?page=register">Register</a>
+                    <a href="{{ path('register') }}">Register</a>
                 </li>
                 <li>
-                    <a href="?page=news">News</a>
+                    <a href="#">News</a>
                 </li>
             </ul>
             {{alerts}}
-            {{game}}
+            {{ form_start(registrationForm) }}
+            {{ form_row(registrationForm.email) }}
+            {{ form_row(registrationForm.username) }}
+            {{ form_row(registrationForm.plainPassword) }}
+            <div class="row">
+                <div class="col-xs-8 text-left">
+                    {{ form_row(registrationForm.agreeTerms) }}
+                </div>
+                <div class="col-xs-4">
+                    <div class="text-right">
+                        <button type="submit" class="btn btn-default">Register</button>
+                    </div>
+                </div>
+            </div>
+            {{ form_end(registrationForm) }}
         </div>
     </div>
 
@@ -38,7 +54,7 @@
         <div class="panel-body">
             {% if loginPostfix %}
                 {{ loginPostfix }}
-            <hr />
+                <hr />
             {% endif %}
             <div class="row text-center">
                 <div class="col-md-6">
@@ -50,5 +66,4 @@
             </div>
         </div>
     </div>
-{#    <img style="max-width: 100%" src="{{ (app.request.getSchemeAndHttpHost() ~ asset('assets/images/banner-text.png'))|base64 }}" alt="text banner">#}
 {% endblock %}
