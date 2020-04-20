@@ -1,54 +1,15 @@
-{% extends 'base.html.twig' %}
+{% extends 'game.base.html.twig' %}
 
-{% block body %}
-    <div class="login-logo">
-        <img src="themes/{{ _theme }}/images/logo.png" alt="Ganger Legends" />
+{% block page_content %}
+<div data-ajax-element="alerts" data-ajax-type="html">  </div>
+<div data-ajax-element="game" data-ajax-type="html">
+    <div class="well well-sm">
+        <h4>
+            Instalation Complete <small class="pull-right tiny"> By <a href="?page=profile&amp;view=1" class="user user-status-1 user-level-2" style="color: #FFFFFF;"> reashetyr </a> Friday 17th April 11:27 </small>
+            <div class="clearfix"></div>
+        </h4>
+        <hr>
+        <p>GL v2 successfully installed</p>
     </div>
-
-    {% if loginSuffix %}
-        <div class="panel panel-default login-form">
-            <div class="panel-body">
-                {{ loginSuffix }}
-            </div>
-        </div>
-    {% endif %}
-
-    <div class="panel panel-default login-form">
-        <div class="panel-heading">
-            {{ page }}
-        </div>
-        <div class="panel-body">
-            <ul class="nav nav-pills nav-justified">
-                <li>
-                    <a href="?page=login">Login</a>
-                </li>
-                <li>
-                    <a href="?page=register">Register</a>
-                </li>
-                <li>
-                    <a href="?page=news">News</a>
-                </li>
-            </ul>
-            {{alerts}}
-            {{game}}
-        </div>
-    </div>
-
-    <div class="panel panel-default login-form">
-        <div class="panel-body">
-            {% if loginPostfix %}
-                {{ loginPostfix }}
-            <hr />
-            {% endif %}
-            <div class="row text-center">
-                <div class="col-md-6">
-                    Gangsters: {{ registeredUsers }}
-                </div>
-                <div class="col-md-6">
-                    Gangsters Online: {{ usersOnlineNow }}
-                </div>
-            </div>
-        </div>
-    </div>
-{#    <img style="max-width: 100%" src="{{ (app.request.getSchemeAndHttpHost() ~ asset('assets/images/banner-text.png'))|base64 }}" alt="text banner">#}
+</div>
 {% endblock %}

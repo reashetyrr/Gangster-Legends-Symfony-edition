@@ -2,22 +2,28 @@
 
 namespace App\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\Routing\Annotation\Route;
 
-class BaseController extends AbstractController
+/**
+ * Class BaseController
+ * @package App\Controller
+ * @IsGranted("ROLE_USER")
+ */
+class BaseController extends ExtendedController
 {
     /**
      * @Route("/", name="homepage")
      */
     public function index()
     {
-        if (!$this->getUser()) {
-            return $this->redirectToRoute('login');
-        }
-
-        return $this->render('base/index.html.twig', [
+        return $this->renderTemplate('base/index.html.twig', [
             'controller_name' => 'BaseController',
+            'loginPostfix' => null,
+            'loginSuffix' => null,
+            'alerts' => null,
+            'game' => null
         ]);
     }
+
 }

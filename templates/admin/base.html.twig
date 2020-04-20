@@ -1,0 +1,161 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    {% if _theme.adminAssets and _theme.adminAssets.stylesheets %}
+        {% for stylesheet_url in _theme.adminAssets.stylesheets %}
+            <link rel="stylesheet" href="{{ asset('themes/' ~ _theme.name ~ '/admin' ~ stylesheet_url) }}">
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block body %}
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header"> <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button> <a class="navbar-brand" href="#">Administration Panel</a> </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="?">Back To The Game</a></li>
+                    <li><a href="?page=logout">Logout</a></li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+    <div class="admin-container">
+        <div class="admin-sidenav chiller-theme">
+            <nav id="sidebar" class="sidebar-wrapper">
+                <div class="sidebar-content mCustomScrollbar _mCS_1 mCS-autoHide desktop">
+                    <div id="mCSB_1" class="mCustomScrollBox mCS-light mCSB_vertical mCSB_inside" style="max-height: none;" tabindex="0">
+                        <div id="mCSB_1_container" class="mCSB_container" style="position:relative; top:0; left:0;" dir="ltr">
+                            <div class="sidebar-header">
+                                <div class="user-pic"> <img class="img-responsive img-rounded mCS_img_loaded" src="themes/default/images/default-profile-picture.png" alt="User picture"> </div>
+                                <div class="user-info"> <span class="user-name"> reashetyr </span> <span class="user-role">Administrator</span> <span class="user-status"> <i class="glyphicon glyphicon-certificate"></i> <span>Online</span> </span> </div>
+                            </div>
+                            <!-- sidebar-header -->
+                            <div class="sidebar-search">
+                                <form class="navbar-form navbar-left" method="post" action="?page=admin&amp;module=users&amp;action=view">
+                                    <div>
+                                        <div class="input-group"> <input type="text" name="user" class="form-control search-menu" placeholder="Search username or ID ..."> <span class="input-group-addon"> <i class="glyphicon glyphicon-search"></i> </span> </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <!-- sidebar-search -->
+                            <div class="sidebar-menu">
+                                <ul>
+                                    <li class="header-menu"> <span>Actions</span> </li>
+                                    <li class="sidebar-dropdown ">
+                                        <a> <span>Dashboard</span> </a>
+                                        <div class="sidebar-submenu">
+                                            <ul>
+                                                <li><a href="?page=admin&amp;module=admin">Admin Control Panel</a></li>
+                                            </ul>
+                                        </div>
+                                    </li>
+                                    <li class="sidebar-dropdown ">
+                                        <a> <span>Game Mechanics</span> </a>
+                                        <div class="sidebar-submenu">
+                                            <ul>
+                                                <li><a href="?page=admin&amp;module=bank">Bank</a></li>
+                                                <li><a href="?page=admin&amp;module=blackmarket">Black Market</a></li>
+                                                <li><a href="?page=admin&amp;module=bullets">Bullet Factory</a></li>
+                                                <li><a href="?page=admin&amp;module=crimes">Crimes</a></li>
+                                                <li><a href="?page=admin&amp;module=locations">Locations</a></li>
+                                                <li><a href="?page=admin&amp;module=theft">Theft</a></li>
+                                            </ul>
+                                        </div>
+                                    </li>
+                                    <li class="sidebar-dropdown ">
+                                        <a> <span>Vehicles</span> </a>
+                                        <div class="sidebar-submenu">
+                                            <ul>
+                                                <li><a href="?page=admin&amp;module=cars">Cars</a></li>
+                                            </ul>
+                                        </div>
+                                    </li>
+                                    <li class="sidebar-dropdown ">
+                                        <a> <span>Killing</span> </a>
+                                        <div class="sidebar-submenu">
+                                            <ul>
+                                                <li><a href="?page=admin&amp;module=detectives">Detectives</a></li>
+                                            </ul>
+                                        </div>
+                                    </li>
+                                    <li class="sidebar-dropdown ">
+                                        <a> <span>Pages</span> </a>
+                                        <div class="sidebar-submenu">
+                                            <ul>
+                                                <li><a href="?page=admin&amp;module=forgotPassword">Forgot Password</a></li>
+                                                <li><a href="?page=admin&amp;module=login">Login</a></li>
+                                                <li><a href="?page=admin&amp;module=register">Register</a></li>
+                                            </ul>
+                                        </div>
+                                    </li>
+                                    <li class="sidebar-dropdown ">
+                                        <a> <span>Communication</span> </a>
+                                        <div class="sidebar-submenu">
+                                            <ul>
+                                                <li><a href="?page=admin&amp;module=forum">Forum</a></li>
+                                                <li><a href="?page=admin&amp;module=loggedin">Game News</a></li>
+                                            </ul>
+                                        </div>
+                                    </li>
+                                    <li class="sidebar-dropdown ">
+                                        <a> <span>User Management</span> </a>
+                                        <div class="sidebar-submenu">
+                                            <ul>
+                                                <li><a href="?page=admin&amp;module=gameSettings">User Ranks</a></li>
+                                                <li><a href="?page=admin&amp;module=userRoles">User Roles</a></li>
+                                                <li><a href="?page=admin&amp;module=users">User Administration</a></li>
+                                            </ul>
+                                        </div>
+                                    </li>
+                                    <li class="sidebar-dropdown ">
+                                        <a> <span>Modules &amp; Themes</span> </a>
+                                        <div class="sidebar-submenu">
+                                            <ul>
+                                                <li><a href="?page=admin&amp;module=moduleManager">Module Manager</a></li>
+                                                <li><a href="?page=admin&amp;module=themeManager">Theme Manager</a></li>
+                                            </ul>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <!-- sidebar-menu -->
+                        </div>
+                        <div id="mCSB_1_scrollbar_vertical" class="mCSB_scrollTools mCSB_1_scrollbar mCS-light mCSB_scrollTools_vertical" style="display: block;">
+                            <div class="mCSB_draggerContainer">
+                                <div id="mCSB_1_dragger_vertical" class="mCSB_dragger" style="position: absolute; min-height: 30px; height: 348px; top: 0px; display: block; max-height: 414px;">
+                                    <div class="mCSB_dragger_bar" style="line-height: 30px;"></div>
+                                </div>
+                                <div class="mCSB_draggerRail"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- sidebar-content -->
+                <div class="sidebar-footer"> <a href="?page=notifications"> <i class="glyphicon glyphicon-bell"></i> <span class="label label-warning notification">1</span> </a> <a href="?page=mail"> <i class="glyphicon glyphicon-envelope"></i>  </a> <a href="?page=profile"> <i class="glyphicon glyphicon-cog"></i> </a> <a href="?page=logout"> <i class="glyphicon glyphicon-off"></i> </a> </div>
+            </nav>
+        </div>
+        <div class="admin-page">
+            {% block admin_body %}{% endblock %}
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script type="text/javascript" src="//cdn.datatables.net/buttons/1.0.3/js/dataTables.buttons.min.js"></script>
+    <script type="text/javascript" src="//cdn.datatables.net/buttons/1.0.3/js/buttons.html5.min.js"></script>
+    <script type="text/javascript" src="//cdn.datatables.net/buttons/1.0.3/js/buttons.print.min.js"></script>
+    <script type="text/javascript" src="//cdn.datatables.net/buttons/1.0.3/js/buttons.flash.min.js"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"></script>
+    <script type="text/javascript" src="//cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/pdfmake.min.js"></script>
+    <script type="text/javascript" src="//cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/vfs_fonts.js"></script>
+    {% if _theme.adminAssets and _theme.adminAssets.javascripts %}
+        {% for javascript_url in _theme.adminAssets.javascripts %}
+            <link rel="stylesheet" href="{{ asset('themes/' ~ _theme.name ~ '/admin' ~ javascript_url) }}">
+        {% endfor %}
+    {% endif %}
+{% endblock %}

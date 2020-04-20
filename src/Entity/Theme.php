@@ -17,9 +17,9 @@ class Theme
     private $id;
 
     /**
-     * @ORM\Column(type="object")
+     * @ORM\Column(type="array")
      */
-    private $templates = \stdClass::class;
+    private $templates = Array();
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -27,9 +27,9 @@ class Theme
     private $creator;
 
     /**
-     * @ORM\Column(type="object", nullable=true)
+     * @ORM\Column(type="json")
      */
-    private $assets = \stdClass::class;
+    private $assets = Array();
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -105,5 +105,9 @@ class Theme
 
     public function getJavascripts(): Array {
         return $this->assets['javascripts'];
+    }
+
+    public function getAdminAssets(): Array {
+        return $this->assets['admin'];
     }
 }

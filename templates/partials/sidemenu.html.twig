@@ -1,0 +1,24 @@
+<ul id="metismenu" class="metismenu list-unstyled">
+{% for item in menu_items[location]|filter(item => is_granted(item._permissions)) %}
+    <li>
+        <a href="#" class="has-arrow side-arrow-{{ location }}" aria-expanded="true">
+            {% if '{city_name}' in item.label %}
+                {{ item.label|replace({'{city_name}': 'London'}) }}
+            {% else %}
+                {{ item.label }}
+            {% endif %}
+        </a>
+        <ul class="list-unstyled mm-collapse mm-show" aria-expanded="true">
+            {% for action in item.content|filter(action => is_granted(action._permissions)) %}
+                <li>
+                    {% if action._parameters is defined %}
+                        <a href="#{{ action._route }}{# path(action._route, action._parameters) #}">{{ action.label }}</a>
+                    {% else %}
+                        <a href="#{{ action._route }}{# path(action._route) #}">{{ action.label }}</a>
+                    {% endif %}
+                </li>
+            {% endfor %}
+        </ul>
+    </li>
+{% endfor %}
+</ul>

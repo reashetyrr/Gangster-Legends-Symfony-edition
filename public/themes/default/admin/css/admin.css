@@ -1,6 +1,6 @@
 html, body {
-    padding
-    margin: 0px;
+    padding: 0;
+    margin: 0;
     background-color: #f9f9f9;
 }
 
@@ -96,5 +96,5 @@ input[type="checkbox"] {
 }
 
 pre {
-    padding-left: 300px !important;}
+    padding-left: 300px !important;
 }

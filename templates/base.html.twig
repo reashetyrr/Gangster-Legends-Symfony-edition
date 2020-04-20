@@ -17,14 +17,17 @@
     {% block stylesheets %}{% endblock %}
 </head>
 
-<body>
+<body class="{% block body_classes %}{% endblock %}">
 {% block body %}{% endblock %}
-{% block javascripts %}{% endblock %}
-
 {% if _theme.javascripts %}
     {% for javascript_url in _theme.javascripts %}
         <script src="{{ asset('/themes/' ~ _theme.name ~ javascript_url) }}"></script>
     {% endfor %}
+
+    {% if _theme.javascripts|filter(i => 'metismenu' in i) %}
+        <script>$("#metismenu").metisMenu({ toggle: false });</script>
+    {% endif %}
 {% endif %}
+{% block javascripts %}{% endblock %}
 </body>
 </html>
